@@ -7,11 +7,12 @@ function App() {
 
   //functions
   const handleClick = () => {
-    setGreeting(`Hello, ${name}! Welcome to the React Greeting App.`);
+    setGreeting(name && `Hello, ${name}! Welcome to the React Greeting App.`);
+    setName("");
   };
 
   return (
-    <div className="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    <div className="container-fluid min-vh-100 d-flex flex-column align-items-center mt-5">
       <div
         className="card p-3 text-center"
         style={{ maxWidth: "500px", width: "100%" }}
@@ -25,6 +26,9 @@ function App() {
             className="form-control"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => {
+              if(e.key === "Enter") handleClick()
+            }}
           />
           <button
             className="btn btn-primary flex-shrink-0 mx-2"
